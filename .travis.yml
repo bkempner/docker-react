@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -f Dockerfile.dev -t bkempner/docker-react .
+
+script:
+  - docker run -e CI=true bkempner/docker-react yarn test -- --coverage
